@@ -1,0 +1,91 @@
+%%%%%请在下一行设定文档类为article%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fontspec, xunicode, xltxtra}	%提供英文字体设置的宏包
+\setmainfont{Times New Roman}				%设置英文主字体 Times New Roman
+
+\usepackage{xeCJK}				%提供中文支持的宏包
+\setCJKmainfont{SimSun}			%设定主字体为宋体
+
+\usepackage{indentfirst}		%设定首段也缩进，符合中文习惯
+\setlength{\parindent}{2em}		%设定段首行空两个字符宽
+
+\linespread{1.2} 				%设置行距
+
+\renewcommand{\figurename}{图}	%将 `figure' 转为 ``图''
+
+%%%%%请在接下来几行设定文章标题和作者%%%%%
+%标题：OOP-QUIZ-2参考程序说明文档
+\title{OOP-QUIZ-2参考程序说明文档}
+%作者：自己的名字
+\author{黄BOSS}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%%%%%请在下一行生成标题%%%%%
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%插入一个名为“问题描述”的section
+\section{问题描述}
+通过对比《程序设计基础》课程中“下楼问题”和“跳马问题”的源程序，
+我们能发现它们属于同一类问题，具有一定的共性。
+
+现需要运用所学的OOP思想，重新设计和实现由多个类组成的类体系架构，能够处理该类问题的求解。
+
+在源代码中，需要包含对类的测试代码，请以下楼问题和跳马问题的求解来进行测试。
+
+%%%插入一个名为“问题分析”的section
+\section{问题分析}
+通过分析这两类问题，发现他们具有如下共同点：
+
+%%%%%请开始一个1. 2. 3. ... 的环境%%%%%
+\begin{enumerate}
+	\item 需要寻找起始状态到最终状态的路径。
+	\item 可能的变化形式只有有限种，且不会导致重复。
+	\item 采用深度优先搜索算法。
+	\item 需要输出所有的可能路径。
+
+%%%%%请结束这个1. 2. 3. ... 的环境%%%%%
+\end{enumerate}
+因此可以将这类问题归纳为一个基类，两个具体问题分别是两个派生类，
+都由这个基类继承而来。
+
+%%%插入一个名为“类的建立”的section
+\section{类的建立}
+%%%插入一个名为“Problem类”的subsection
+\subsection{Problem类}
+Problem类是此类问题的基类。主要包括以下成员函数
+\begin{description}
+%%%%%请开始一个描述环境%%%%%
+	\item[void solve()] 求解问题的函数。
+	\item[virtual void move(int dir)] 向dir方向移动，
+		对应于搜索中的加深一步。
+	\item[virtual void moveBack()] 移回上一步，
+		对应于搜索中的回溯。
+	\item[virtual bool isLegal()] 判断位置是否合法。
+	\item[virtual bool targetReached()] 判断是否到达目标。
+	\item[void print()] 输出解法。
+%%%%%请结束这个描述环境%%%%%
+\end{description}
+步骤在程序中用vector<int>型变量表示。
+
+%%%插入一个名为“KnightProblem类和StairProblem类”的subsection
+\subsection{KnightProblem类和StairProblem类}
+具体实现在此省略。最后形成的类图如图\ref{fig:figure1}所示。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[]{16222_100.png}
+	\caption{类图}
+	\label{fig:figure1}
+\end{figure}
+
+%%%插入一个名为“程序测试”的section
+\section{程序测试}
+我这种天才写的程序怎么可能会有错呢？哈哈哈哈哈！
+
+其实这只是一个\XeTeX 的教学而已，大家不要太当真:)
+
+\end{document}
